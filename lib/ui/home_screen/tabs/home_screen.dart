@@ -1,6 +1,7 @@
 import 'package:event_planning/providers/app_language_provider.dart';
 import 'package:event_planning/providers/app_theme_provider.dart';
 import 'package:event_planning/ui/home_screen/tabs/favorite/favorite_tab.dart';
+import 'package:event_planning/ui/home_screen/tabs/home/add_event/add_event.dart';
 import 'package:event_planning/ui/home_screen/tabs/home/home_tab.dart';
 import 'package:event_planning/ui/home_screen/tabs/map/map_tab.dart';
 import 'package:event_planning/ui/home_screen/tabs/profile/profile_tab.dart';
@@ -63,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
-        
+        Navigator.of(context).pushNamed(AddEvent.routeName);
       },
         child: Icon(Icons.add,size:35,color: AppColors.whiteColor,),
       ),

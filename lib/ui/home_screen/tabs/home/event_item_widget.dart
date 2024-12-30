@@ -65,6 +65,10 @@ class EventItemWidget extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                width: 1,
+                color: AppColors.primaryLight
+              ),
               color: themeProvider.appTheme == ThemeMode.light ?
               AppColors.whiteColor : AppColors.primaryDark,
             ),

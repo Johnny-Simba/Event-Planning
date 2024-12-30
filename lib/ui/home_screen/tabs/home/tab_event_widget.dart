@@ -7,7 +7,13 @@ import 'package:provider/provider.dart';
 class TabEventWidget extends StatelessWidget {
   bool isSelected;
   String eventName;
-  TabEventWidget({required this.isSelected, required this.eventName});
+  Color backgroundColor;
+  TextStyle textSelectedStyle;
+  TextStyle textUnSelectedStyle;
+  Color? borderColor;
+  TabEventWidget({required this.isSelected, required this.eventName,
+    required this.backgroundColor, required this.textSelectedStyle,
+    required this.textUnSelectedStyle, this.borderColor});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +28,14 @@ class TabEventWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(46),
         border: Border.all(
-          color: AppColors.whiteColor,
+          color: borderColor ?? AppColors.whiteColor,
           width: 2,
         ),
-        color: isSelected ? AppColors.whiteColor : AppColors.transparentColor,
+        color: isSelected ? backgroundColor : AppColors.transparentColor,
       ),
-      child: Text(eventName,
-        style: isSelected ? themeProvider.appTheme == ThemeMode.light ? AppStyles.medium16Primary :
-        AppStyles.medium16PrimaryDark : AppStyles.medium16White,
+      child: Text(
+        eventName,
+        style: isSelected ? textSelectedStyle : textUnSelectedStyle,
         ),
     );
   }

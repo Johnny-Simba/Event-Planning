@@ -34,5 +34,17 @@
 "name" : "Name",
 "re_password" : "Re Password",
 "register" : "Register",
-"already_have_account" : "Already Have Account ? "
+"already_have_account" : "Already Have Account ? ",
+"create_event" : "Create Event",
+"title" : "Title",
+"event_title" : "Event Title",
+"description" : "Description",
+"event_description" : "Event Description",
+"event_date" : "Event Date",
+"choose_date" : "Choose Date",
+"event_time" : "Event Time",
+"choose_time" : "Choose Time",
+"location" : "Location",
+"choose_event_location" : "Choose Event Location",
+"add_event" : "Add Event"
 }

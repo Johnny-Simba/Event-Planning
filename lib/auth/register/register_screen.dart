@@ -24,98 +24,102 @@ class RegisterScreen extends StatelessWidget {
           style: themeProvider.appTheme == ThemeMode.light ?
           AppStyles.regular20Black : AppStyles.regular20White,),
         centerTitle: true,
-        leading: IconButton(
-          onPressed: (){
-            Navigator.of(context).pop();
-          },
-          icon: Icon(Icons.arrow_back, size: 24,
-              color: themeProvider.appTheme ==
-                  ThemeMode.dark ? AppColors.whiteColor : AppColors.blackColor),
+        iconTheme: IconThemeData(
+          color: themeProvider.appTheme ==
+              ThemeMode.dark ? AppColors.whiteColor : AppColors.blackColor,
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Image.asset(AssetsManager.logo,height: height * 0.22,),
-          CustomTextField(
-            hintText: AppLocalizations.of(context)!.name,
-            hintStyle: themeProvider.appTheme == ThemeMode.light ?
-            AppStyles.medium16Gray : AppStyles.medium16White,
-            style: themeProvider.appTheme == ThemeMode.light ?
-            AppStyles.medium16Black : AppStyles.medium16White,
-            borderColor: themeProvider.appTheme == ThemeMode.light ?
-            AppColors.grayColor : AppColors.whiteColor,
-            prefixIcon: ImageIcon(AssetImage(AssetsManager.profileIcon),size: 24,
-              color: themeProvider.appTheme == ThemeMode.light ?
-              AppColors.grayColor : AppColors.whiteColor,),
-          ),
-          CustomTextField(
-              hintText: AppLocalizations.of(context)!.email,
-            hintStyle: themeProvider.appTheme == ThemeMode.light ?
-            AppStyles.medium16Gray : AppStyles.medium16White,
-            style: themeProvider.appTheme == ThemeMode.light ?
-            AppStyles.medium16Black : AppStyles.medium16White,
-            borderColor: themeProvider.appTheme == ThemeMode.light ?
-            AppColors.grayColor : AppColors.whiteColor,
-            prefixIcon: ImageIcon(AssetImage(AssetsManager.emailIcon),size: 24,
-              color: themeProvider.appTheme == ThemeMode.light ?
-              AppColors.grayColor : AppColors.whiteColor,),
-          ),
-          CustomTextField(
-            hintText: AppLocalizations.of(context)!.password,
-            obscureText: true,
-            hintStyle: themeProvider.appTheme == ThemeMode.light ?
-            AppStyles.medium16Gray : AppStyles.medium16White,
-            borderColor: themeProvider.appTheme == ThemeMode.light ?
-            AppColors.grayColor : AppColors.whiteColor,
-            prefixIcon: ImageIcon(AssetImage(AssetsManager.passwordIcon),size: 24,
-              color: themeProvider.appTheme == ThemeMode.light ?
-              AppColors.grayColor : AppColors.whiteColor,),
-            suffixIcon: ImageIcon(AssetImage(AssetsManager.hidePasswordIcon),size: 24,
-              color: themeProvider.appTheme == ThemeMode.light ?
-              AppColors.grayColor : AppColors.whiteColor,),
-          ),
-          CustomTextField(
-            hintText: AppLocalizations.of(context)!.re_password,
-            obscureText: true,
-            hintStyle: themeProvider.appTheme == ThemeMode.light ?
-            AppStyles.medium16Gray : AppStyles.medium16White,
-            borderColor: themeProvider.appTheme == ThemeMode.light ?
-            AppColors.grayColor : AppColors.whiteColor,
-            prefixIcon: ImageIcon(AssetImage(AssetsManager.passwordIcon),size: 24,
-              color: themeProvider.appTheme == ThemeMode.light ?
-              AppColors.grayColor : AppColors.whiteColor,),
-            suffixIcon: ImageIcon(AssetImage(AssetsManager.hidePasswordIcon),size: 24,
-              color: themeProvider.appTheme == ThemeMode.light ?
-              AppColors.grayColor : AppColors.whiteColor,),
-          ),
-          SizedBox(height: height * 0.02,),
-          Padding(padding: EdgeInsets.symmetric(
-            horizontal: width * 0.04
-          ),
-            child: CustomElevatedButton(
-              onButtonClicked: (){},
-              buttonText: AppLocalizations.of(context)!.create_account,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: width * 0.04,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Image.asset(AssetsManager.logo,height: height * 0.22,),
+            CustomTextField(
+              hintText: AppLocalizations.of(context)!.name,
+              hintStyle: themeProvider.appTheme == ThemeMode.light ?
+              AppStyles.medium16Gray : AppStyles.medium16White,
+              style: themeProvider.appTheme == ThemeMode.light ?
+              AppStyles.medium16Black : AppStyles.medium16White,
+              borderColor: themeProvider.appTheme == ThemeMode.light ?
+              AppColors.grayColor : AppColors.whiteColor,
+              prefixIcon: ImageIcon(AssetImage(AssetsManager.profileIcon),size: 24,
+                color: themeProvider.appTheme == ThemeMode.light ?
+                AppColors.grayColor : AppColors.whiteColor,),
             ),
-          ),
-          SizedBox(height: height * 0.02,),
-          InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Text.rich(
-              textAlign: TextAlign.center,
-                TextSpan(
-              children: [
-                TextSpan(text: AppLocalizations.of(context)!.already_have_account,
-                    style: themeProvider.appTheme == ThemeMode.light ?
-                AppStyles.medium16Black : AppStyles.medium16White),
-                TextSpan(text: AppLocalizations.of(context)!.login,
-                    style: AppStyles.bold16Primary)
-              ]
-            )),
-          ),
-        ],
+            SizedBox(height: height * 0.019,),
+            CustomTextField(
+                hintText: AppLocalizations.of(context)!.email,
+              hintStyle: themeProvider.appTheme == ThemeMode.light ?
+              AppStyles.medium16Gray : AppStyles.medium16White,
+              style: themeProvider.appTheme == ThemeMode.light ?
+              AppStyles.medium16Black : AppStyles.medium16White,
+              borderColor: themeProvider.appTheme == ThemeMode.light ?
+              AppColors.grayColor : AppColors.whiteColor,
+              prefixIcon: ImageIcon(AssetImage(AssetsManager.emailIcon),size: 24,
+                color: themeProvider.appTheme == ThemeMode.light ?
+                AppColors.grayColor : AppColors.whiteColor,),
+            ),
+            SizedBox(height: height * 0.019,),
+            CustomTextField(
+              hintText: AppLocalizations.of(context)!.password,
+              obscureText: true,
+              hintStyle: themeProvider.appTheme == ThemeMode.light ?
+              AppStyles.medium16Gray : AppStyles.medium16White,
+              borderColor: themeProvider.appTheme == ThemeMode.light ?
+              AppColors.grayColor : AppColors.whiteColor,
+              prefixIcon: ImageIcon(AssetImage(AssetsManager.passwordIcon),size: 24,
+                color: themeProvider.appTheme == ThemeMode.light ?
+                AppColors.grayColor : AppColors.whiteColor,),
+              suffixIcon: ImageIcon(AssetImage(AssetsManager.hidePasswordIcon),size: 24,
+                color: themeProvider.appTheme == ThemeMode.light ?
+                AppColors.grayColor : AppColors.whiteColor,),
+            ),
+            SizedBox(height: height * 0.019,),
+            CustomTextField(
+              hintText: AppLocalizations.of(context)!.re_password,
+              obscureText: true,
+              hintStyle: themeProvider.appTheme == ThemeMode.light ?
+              AppStyles.medium16Gray : AppStyles.medium16White,
+              borderColor: themeProvider.appTheme == ThemeMode.light ?
+              AppColors.grayColor : AppColors.whiteColor,
+              prefixIcon: ImageIcon(AssetImage(AssetsManager.passwordIcon),size: 24,
+                color: themeProvider.appTheme == ThemeMode.light ?
+                AppColors.grayColor : AppColors.whiteColor,),
+              suffixIcon: ImageIcon(AssetImage(AssetsManager.hidePasswordIcon),size: 24,
+                color: themeProvider.appTheme == ThemeMode.light ?
+                AppColors.grayColor : AppColors.whiteColor,),
+            ),
+            SizedBox(height: height * 0.02,),
+            Padding(padding: EdgeInsets.symmetric(
+              horizontal: width * 0.04
+            ),
+              child: CustomElevatedButton(
+                onButtonClicked: (){},
+                buttonText: AppLocalizations.of(context)!.create_account,
+              ),
+            ),
+            SizedBox(height: height * 0.02,),
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Text.rich(
+                textAlign: TextAlign.center,
+                  TextSpan(
+                children: [
+                  TextSpan(text: AppLocalizations.of(context)!.already_have_account,
+                      style: themeProvider.appTheme == ThemeMode.light ?
+                  AppStyles.medium16Black : AppStyles.medium16White),
+                  TextSpan(text: AppLocalizations.of(context)!.login,
+                      style: AppStyles.bold16Primary)
+                ]
+              )),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -30,7 +30,8 @@ class _HomeTapState extends State<HomeTap> {
       AppLocalizations.of(context)!.exhibition,
       AppLocalizations.of(context)!.book_club,
       AppLocalizations.of(context)!.gaming,
-      AppLocalizations.of(context)!.eating
+      AppLocalizations.of(context)!.eating,
+      AppLocalizations.of(context)!.workshop
     ];
     return Scaffold(
       appBar: AppBar(
@@ -108,8 +109,13 @@ class _HomeTapState extends State<HomeTap> {
                       labelPadding: EdgeInsets.symmetric(horizontal: width * 0.01),
                       isScrollable: true,
                         tabs: eventNameList.map((eventName){
-                          return TabEventWidget(isSelected: isSelectedIndex == eventNameList.indexOf(eventName),
-                              eventName: eventName);
+                          return TabEventWidget(
+                            isSelected: isSelectedIndex == eventNameList.indexOf(eventName),
+                            eventName: eventName,
+                            backgroundColor: AppColors.whiteColor,
+                            textSelectedStyle: AppStyles.medium16Primary,
+                            textUnSelectedStyle: AppStyles.medium16White,
+                          );
                         }).toList()
                     )
                 ),

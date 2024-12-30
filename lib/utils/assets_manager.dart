@@ -8,11 +8,24 @@ class AssetsManager {
   static const String iconProfile = 'assets/images/iconprofile.png';
   static const String selectedIconProfile = 'assets/images/selected_iconprofile.png';
   static const String routeImage = 'assets/images/routeimage.png';
-  static const String birthdayImage = 'assets/images/BirthdayImage.png';
   static const String logo = 'assets/images/Logo.png';
   static const String emailIcon = 'assets/images/email_icon.png';
   static const String passwordIcon = 'assets/images/password_icon.png';
   static const String profileIcon = 'assets/images/profile_icon.png';
   static const String hidePasswordIcon = 'assets/images/hide_password_icon.png';
   static const String googleIcon = 'assets/images/google_logo.png';
+  static const String birthdayImage = 'assets/images/birthday_image.png';
+  static const String bookClubImage = 'assets/images/bookclub_image.png';
+  static const String eatingImage = 'assets/images/eating_image.png';
+  static const String exhibitionImage = 'assets/images/eating_image.png';
+  static const String gamingImage = 'assets/images/gaming_image.png';
+  static const String holidayImage = 'assets/images/holiday_image.png';
+  static const String meetingImage = 'assets/images/meeting_image.png';
+  static const String sportImage = 'assets/images/sport_image.png';
+  static const String workshopImage = 'assets/images/workshop_image.png';
+  static const String eventTitleIcon = 'assets/images/event_icon.png';
+  static const String dateIcon = 'assets/images/date_icon.png';
+  static const String timeIcon = 'assets/images/time_icon.png';
+  static const String locationIcon = 'assets/images/location_icon.png';
+  static const String arrowLocationIcon = 'assets/images/arrow_location_icon.png';
 }
