@@ -53,4 +53,10 @@ class AppStyles {
       fontSize: 20, fontWeight: FontWeight.w500, color: AppColors.primaryLight);
   static TextStyle regular20Black = GoogleFonts.inter(
       fontSize: 20, fontWeight: FontWeight.w400, color: AppColors.blackColor);
+  static TextStyle regular20Primary = GoogleFonts.inter(
+      fontSize: 20, fontWeight: FontWeight.w400, color: AppColors.primaryLight);
+  static TextStyle medium24Primary= GoogleFonts.inter(
+      fontSize: 24, fontWeight: FontWeight.w500, color: AppColors.primaryLight);
+  static TextStyle bold16Red = GoogleFonts.inter(
+      fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.redColor);
 }

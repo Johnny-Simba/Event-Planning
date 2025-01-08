@@ -22,7 +22,7 @@
 "holiday" : "الاجازة",
 "eating" : "الطعام",
 "search_for_event" : "ابحث عن حدث",
-"logout" : "تسجيل خؤوج",
+"logout" : "تسجيل خروج",
 "login" : "تسجيل الدخول",
 "email" : "الايميل",
 "password" : "الرقم السري",
@@ -34,5 +34,17 @@
 "name" : "الاسم",
 "re_password" : "إعادة كلمة السر",
 "register" : "التسجيل",
-"already_have_account" : "لديك حساب بالفعل ؟ "
+"already_have_account" : "لديك حساب بالفعل ؟ ",
+"create_event" : "انشاء حدث",
+"title" : "العنوان",
+"event_title" : "عنوان الحدث",
+"description" : "الوصف",
+"event_description" : "وصف الحدث",
+"event_date" : "تاريخ الحدث",
+"choose_date" : "اختر التاريخ",
+"event_time" : "ةقت الحدث",
+"choose_time" : "اختر الوقت",
+"location" : "المكان",
+"choose_event_location" : "اختر مكان الحدث",
+"add_event" : "اضف الحدث"
 }

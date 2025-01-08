@@ -1,5 +1,8 @@
+import 'package:event_planning/firebase_utils.dart';
+import 'package:event_planning/model/event.dart';
+import 'package:event_planning/providers/event_list_provider.dart';
+import 'package:event_planning/providers/user_provider.dart';
 import 'package:event_planning/ui/home_screen/tabs/home/tab_event_widget.dart';
-import 'package:event_planning/ui/home_screen/tabs/home_screen.dart';
 import 'package:event_planning/ui/widget/custom_elevated_button.dart';
 import 'package:event_planning/ui/widget/custom_text_field.dart';
 import 'package:event_planning/utils/assets_manager.dart';
@@ -30,11 +33,15 @@ class _AddEventState extends State<AddEvent> {
   String formatedTime = '';
   String errorDateMessage = '';
   String errorTimeMessage = '';
+  String selectedImage = '';
+  String selectedEvent = '';
+  late EventListProvider eventListProvider;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     var themeProvider = Provider.of<AppThemeProvider>(context);
+    eventListProvider = Provider.of<EventListProvider>(context);
 
     List<String> eventNameList = [
       AppLocalizations.of(context)!.sport,
@@ -58,6 +65,8 @@ class _AddEventState extends State<AddEvent> {
       AssetsManager.eatingImage,
       AssetsManager.workshopImage,
     ];
+    selectedImage = selectedImageName[selectedIndex];
+    selectedEvent = eventListProvider.eventKeyNameList[selectedIndex];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.transparentColor,
@@ -184,7 +193,7 @@ class _AddEventState extends State<AddEvent> {
                             children: [
                               Text( selectedDate == null ?
                                 AppLocalizations.of(context)!.choose_date :
-                                formatedDate,
+                              DateFormat('dd/MM/yyyy').format(selectedDate!),
                                 style: AppStyles.medium16Primary,),
                             ],
                           ),
@@ -287,7 +296,21 @@ class _AddEventState extends State<AddEvent> {
   }
   void addEvent(){
     if(formKey.currentState?.validate() == true && validateDate() && validateTime()){
-      /// todo: add event
+      Event event = Event(
+          title: titleController.text,
+          description: descriptionController.text,
+          image: selectedImage,
+          eventName: selectedEvent,
+          dateTime: selectedDate!,
+          time: formatedTime,
+      );
+      var userProvider = Provider.of<UserProvider>(context, listen:  false);
+      FirebaseUtils.addEventToFireStore(event, userProvider.currentUser!.id).
+      then((value) {
+        print('event added successfully');
+        eventListProvider.changeSelectedIndex(0, userProvider.currentUser!.id);
+        Navigator.of(context).pop();
+      },);
     }
     else{
       validateDate();

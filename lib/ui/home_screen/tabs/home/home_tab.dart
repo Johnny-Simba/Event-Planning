@@ -1,4 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:event_planning/firebase_utils.dart';
+import 'package:event_planning/model/event.dart';
 import 'package:event_planning/providers/app_theme_provider.dart';
+import 'package:event_planning/providers/event_list_provider.dart';
+import 'package:event_planning/providers/user_provider.dart';
 import 'package:event_planning/ui/home_screen/tabs/home/event_item_widget.dart';
 import 'package:event_planning/ui/home_screen/tabs/home/tab_event_widget.dart';
 import 'package:event_planning/utils/app_styles.dart';
@@ -14,13 +19,12 @@ class HomeTap extends StatefulWidget {
 }
 
 class _HomeTapState extends State<HomeTap> {
-  int isSelectedIndex = 0 ;
+
+
+
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
-    var themeProvider = Provider.of<AppThemeProvider>(context);
     List<String> eventNameList = [
       AppLocalizations.of(context)!.all,
       AppLocalizations.of(context)!.sport,
@@ -33,6 +37,16 @@ class _HomeTapState extends State<HomeTap> {
       AppLocalizations.of(context)!.eating,
       AppLocalizations.of(context)!.workshop
     ];
+    var eventListProvider = Provider.of<EventListProvider>(context);
+    var userProvider = Provider.of<UserProvider>(context);
+    if(eventListProvider.eventsList.isEmpty){
+      eventListProvider.getAllEvents(userProvider.currentUser!.id);
+    }
+
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    var themeProvider = Provider.of<AppThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -45,7 +59,7 @@ class _HomeTapState extends State<HomeTap> {
                   children: [
                     Text(AppLocalizations.of(context)!.welcome_back,
                       style: AppStyles.regular14White,),
-                    Text('Youssef Mahmoud',style: AppStyles.bold24White,)
+                    Text(userProvider.currentUser!.name,style: AppStyles.bold24White,)
                   ],
                 )
               ],
@@ -95,13 +109,12 @@ class _HomeTapState extends State<HomeTap> {
                   ],
                 ),
                 SizedBox(height: height * 0.02,),
-                DefaultTabController(length: eventNameList.length,
+                DefaultTabController(
+                    length: eventNameList.length,
                     child: TabBar(
                       onTap: (index) {
-                        isSelectedIndex = index;
-                        setState(() {
+                        eventListProvider.changeSelectedIndex(index, userProvider.currentUser!.id);
 
-                        });
                       },
                       dividerColor: AppColors.transparentColor,
                       indicatorColor: AppColors.transparentColor,
@@ -110,7 +123,8 @@ class _HomeTapState extends State<HomeTap> {
                       isScrollable: true,
                         tabs: eventNameList.map((eventName){
                           return TabEventWidget(
-                            isSelected: isSelectedIndex == eventNameList.indexOf(eventName),
+                            isSelected: eventListProvider.selectedIndex ==
+                                eventNameList.indexOf(eventName),
                             eventName: eventName,
                             backgroundColor: AppColors.whiteColor,
                             textSelectedStyle: AppStyles.medium16Primary,
@@ -123,15 +137,17 @@ class _HomeTapState extends State<HomeTap> {
             ),
           ),
           Expanded(
-              child: ListView.builder(
+              child: eventListProvider.filterList.isEmpty ? Center(child: Text('No Events Founds'),):
+              ListView.builder(
                   itemBuilder: (context, index) {
-                    return EventItemWidget();
+                    return EventItemWidget(event: eventListProvider.filterList[index],);
                   },
-                itemCount: 20,
+                itemCount: eventListProvider.filterList.length,
               )
           )
         ],
       ),
     );
   }
+
 }

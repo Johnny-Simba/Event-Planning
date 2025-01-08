@@ -2,7 +2,12 @@ import 'package:event_planning/auth/login/login_screen.dart';
 import 'package:event_planning/auth/register/register_screen.dart';
 import 'package:event_planning/providers/app_language_provider.dart';
 import 'package:event_planning/providers/app_theme_provider.dart';
+import 'package:event_planning/providers/event_list_provider.dart';
+import 'package:event_planning/providers/event_provider.dart';
+import 'package:event_planning/providers/user_provider.dart';
 import 'package:event_planning/ui/home_screen/tabs/home/add_event/add_event.dart';
+import 'package:event_planning/ui/home_screen/tabs/home/event_details/edit_event.dart';
+import 'package:event_planning/ui/home_screen/tabs/home/event_details/event_details.dart';
 import 'package:event_planning/ui/home_screen/tabs/home_screen.dart';
 import 'package:event_planning/utils/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +25,10 @@ void main() async{
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => AppLanguageProvider(),),
-      ChangeNotifierProvider(create: (context) => AppThemeProvider(),)
+      ChangeNotifierProvider(create: (context) => AppThemeProvider(),),
+      ChangeNotifierProvider(create: (context) => EventListProvider()),
+      ChangeNotifierProvider(create: (context) => UserProvider()),
+      ChangeNotifierProvider(create: (context) => EventProvider()),
     ],
     child: MyApp()));
 }
@@ -40,7 +48,9 @@ class MyApp extends StatelessWidget {
         HomeScreen.routeName : (context) => HomeScreen(),
         LoginScreen.routeName : (context) => LoginScreen(),
         RegisterScreen.routeName : (context) => RegisterScreen(),
-        AddEvent.routeName : (context) => AddEvent()
+        AddEvent.routeName : (context) => AddEvent(),
+        EventDetails.routeName : (context) => EventDetails(),
+        EditEvent.routeName : (context) => EditEvent()
       },
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,

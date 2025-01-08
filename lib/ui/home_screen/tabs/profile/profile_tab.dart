@@ -1,3 +1,4 @@
+import 'package:event_planning/auth/login/login_screen.dart';
 import 'package:event_planning/providers/app_language_provider.dart';
 import 'package:event_planning/providers/app_theme_provider.dart';
 import 'package:event_planning/ui/home_screen/tabs/language_bottom_sheet.dart';
@@ -8,6 +9,7 @@ import 'package:event_planning/utils/app_styles.dart';
 import 'package:event_planning/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -120,7 +122,11 @@ class _ProfileTapState extends State<ProfileTap> {
                 ),
                 SizedBox(height: height * 0.29,),
                 CustomElevatedButton(
-                  onButtonClicked: (){},
+                  onButtonClicked: (){
+                    GoogleSignIn googleSignIn = GoogleSignIn();
+                    googleSignIn.disconnect();
+                    Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+                  },
                   buttonText: AppLocalizations.of(context)!.logout,
                   prefixIconButton: Icon(Icons.logout, color: AppColors.whiteColor,size: 24,),
                   mainAxisAlignment: MainAxisAlignment.start,

@@ -17,13 +17,15 @@ class CustomTextField extends StatelessWidget {
   MyValidator validator;
   Widget? suffixIcon;
   bool obscureText;
+  TextInputType keyboardType ;
   CustomTextField({this.borderColor = AppColors.grayColor, required this.hintText,
     this.labelText, this.hintStyle, this.prefixIcon, this.suffixIcon, this.labelStyle,
   this.style, this.obscureText = false, this.maxLines, this.validator,
-    this.controller});
+    this.controller, this.keyboardType = TextInputType.text});
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: keyboardType,
       obscureText: obscureText,
       controller: controller,
       validator: validator,

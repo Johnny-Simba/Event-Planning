@@ -17,7 +17,7 @@ class AssetsManager {
   static const String birthdayImage = 'assets/images/birthday_image.png';
   static const String bookClubImage = 'assets/images/bookclub_image.png';
   static const String eatingImage = 'assets/images/eating_image.png';
-  static const String exhibitionImage = 'assets/images/eating_image.png';
+  static const String exhibitionImage = 'assets/images/exhibition_image.png';
   static const String gamingImage = 'assets/images/gaming_image.png';
   static const String holidayImage = 'assets/images/holiday_image.png';
   static const String meetingImage = 'assets/images/meeting_image.png';
@@ -28,4 +28,8 @@ class AssetsManager {
   static const String timeIcon = 'assets/images/time_icon.png';
   static const String locationIcon = 'assets/images/location_icon.png';
   static const String arrowLocationIcon = 'assets/images/arrow_location_icon.png';
+  static const String editIcon = 'assets/images/edit_icon.png';
+  static const String removeIcon = 'assets/images/remove_icon.png';
+  static const String calenderIcon = 'assets/images/calender_icon.png';
+  static const String mapImage = 'assets/images/map_image.png';
 }
