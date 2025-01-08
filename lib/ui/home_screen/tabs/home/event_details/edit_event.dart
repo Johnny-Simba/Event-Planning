@@ -34,8 +34,8 @@ class _EditEventState extends State<EditEvent> {
   String formatedDate = '';
   TimeOfDay? selectedTime;
   String formatedTime = '';
-  String selectedImage = '';
-  String selectedEvent = '';
+  String? selectedImage;
+  String? selectedEvent;
   String? eventId;
   bool? isFavorite;
   late EventListProvider eventListProvider;
@@ -80,8 +80,8 @@ class _EditEventState extends State<EditEvent> {
       AssetsManager.eatingImage,
       AssetsManager.workshopImage,
     ];
-    selectedImage = selectedIndex == 0 ? eventProvider.event!.image : selectedImageName[selectedIndex];
-    selectedEvent = selectedIndex == 0 ? eventProvider.event!.eventName : eventListProvider.eventKeyNameList[selectedIndex];
+    selectedImage = selectedImage == null ? selectedImage = eventProvider.event!.image : selectedImage = selectedImageName[selectedIndex];
+    selectedEvent = selectedEvent == null ? selectedEvent = eventProvider.event!.eventName : selectedEvent = eventListProvider.eventKeyNameList[selectedIndex];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.transparentColor,
@@ -111,8 +111,7 @@ class _EditEventState extends State<EditEvent> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: selectedIndex == 0 ? Image.asset(eventProvider.event!.image) :
-                  Image.asset(selectedImage),
+                  child: Image.asset(selectedImage!),
                 ),
                 SizedBox(height: height * 0.019,),
                 Container(
@@ -129,7 +128,9 @@ class _EditEventState extends State<EditEvent> {
                           },
                           splashColor: AppColors.transparentColor,
                           child: TabEventWidget(
-                            isSelected: eventListProvider.eventKeyNameList[index] == eventProvider.event!.eventName,
+                            isSelected: selectedIndex == 0
+                                ? eventListProvider.eventKeyNameList[index] == selectedEvent :
+                            selectedIndex == index,
                             eventName: eventNameList[index],
                             backgroundColor: AppColors.primaryLight,
                             borderColor: AppColors.primaryLight,
@@ -155,6 +156,8 @@ class _EditEventState extends State<EditEvent> {
                         AppStyles.medium16Black : AppStyles.medium16White,),
                       SizedBox(height: height * 0.0095,),
                       CustomTextField(
+                        style: themeProvider.appTheme == ThemeMode.light ?
+                        AppStyles.medium16Black : AppStyles.medium16White,
                         controller: titleController,
                         validator: (text) {
                           if(text == null || text.isEmpty){
@@ -177,6 +180,8 @@ class _EditEventState extends State<EditEvent> {
                         AppStyles.medium16Black : AppStyles.medium16White,),
                       SizedBox(height: height * 0.0095,),
                       CustomTextField(
+                        style: themeProvider.appTheme == ThemeMode.light ?
+                        AppStyles.medium16Black : AppStyles.medium16White,
                         controller: descriptionController,
                         validator: (text) {
                           if(text == null || text.isEmpty){
@@ -265,12 +270,16 @@ class _EditEventState extends State<EditEvent> {
                               )
                           ),
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Image.asset(AssetsManager.locationIcon,),
-                              SizedBox(width: width * 0.02,),
-                              Text(AppLocalizations.of(context)!.choose_event_location,style: AppStyles.medium16Primary,),
-                              SizedBox(width: width * 0.28),
-                              Image.asset(AssetsManager.arrowLocationIcon)
+                              Row(
+                                children: [
+                                  Image.asset(AssetsManager.locationIcon,),
+                                  SizedBox(width: width * 0.02,),
+                                  Text(AppLocalizations.of(context)!.choose_event_location,style: AppStyles.medium16Primary,),
+                                ],
+                              ),
+                              Row(children: [Image.asset(AssetsManager.arrowLocationIcon)],)
                             ],
                           ),
                         ),
@@ -309,8 +318,8 @@ class _EditEventState extends State<EditEvent> {
         id: eventId!,
         title: titleController!.text,
         description: descriptionController!.text,
-        image: selectedImage,
-        eventName: selectedEvent,
+        image: selectedImage!,
+        eventName: selectedEvent!,
         dateTime: selectedDate!,
         time: formatedTime,
         isFavorite: isFavorite!,

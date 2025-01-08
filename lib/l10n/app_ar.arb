@@ -42,9 +42,12 @@
 "event_description" : "وصف الحدث",
 "event_date" : "تاريخ الحدث",
 "choose_date" : "اختر التاريخ",
-"event_time" : "ةقت الحدث",
+"event_time" : "وقت الحدث",
 "choose_time" : "اختر الوقت",
 "location" : "المكان",
 "choose_event_location" : "اختر مكان الحدث",
-"add_event" : "اضف الحدث"
+"add_event" : "اضف الحدث",
+"event_details" : "تفاصيل الحدث",
+"edit_event" : "تعديل الحدث",
+"update_event" : "تحديث الحدث"
 }

@@ -2,6 +2,7 @@ import 'package:event_planning/auth/register/register_screen.dart';
 import 'package:event_planning/firebase_utils.dart';
 import 'package:event_planning/providers/app_theme_provider.dart';
 import 'package:event_planning/providers/event_list_provider.dart';
+import 'package:event_planning/providers/login_provider.dart';
 import 'package:event_planning/providers/user_provider.dart';
 import 'package:event_planning/ui/home_screen/tabs/home_screen.dart';
 import 'package:event_planning/ui/widget/custom_elevated_button.dart';
